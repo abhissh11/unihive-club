@@ -28,6 +28,9 @@ export default function Header() {
         <Link to="/resources" className="text-lg font-normal">
           Resources
         </Link>
+        <Link to="/about" className="text-lg font-normal">
+          About
+        </Link>
       </ul>
     </div>
   );
