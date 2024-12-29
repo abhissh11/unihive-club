@@ -3,35 +3,44 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div className="px-10 flex items-center justify-around border-b p-4">
-      <div className="">
+    <header className="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-md z-50">
+      <div className="px-10 flex items-center justify-between py-4">
+        {/* Logo */}
         <Link to="/">
           <h1 className="text-2xl font-bold font-serif">
-            <span className="text-blue-600">Uni</span>Hive
+            <span className="text-blue-600 dark:text-blue-400">Uni</span>
+            <span className="text-gray-800 dark:text-white">Hive</span>
           </h1>
         </Link>
+
+        {/* Search Bar */}
+        <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-300 dark:border-gray-700 px-4 shadow-md">
+          <h3>🔍</h3>
+          <input
+            type="text"
+            className="px-3 py-2 bg-transparent outline-none text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 w-72"
+            placeholder="Search for resources, hackathons..."
+          />
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="flex items-center gap-6">
+          {["Community", "Hackathons", "Resources", "About"].map((item, index) => (
+            <Link
+              key={index}
+              to={`/${item.toLowerCase()}`}
+              className="text-lg font-medium text-gray-800 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition duration-300"
+            >
+              {item}
+            </Link>
+          ))}
+          <Link to="/profile">
+            <div className="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center hover:shadow-lg transition duration-300">
+              <span className="text-lg font-bold text-gray-700 dark:text-gray-300">👤</span>
+            </div>
+          </Link>
+        </nav>
       </div>
-      <div className="rounded-full border border-black pl-4 flex justify-between items-center">
-        <h3>🔍</h3>
-        <input
-          className="px-3 py-3   rounded-full w-72  outline-none"
-          placeholder="Search for resources, hackathons.."
-        />
-      </div>
-      <ul className="flex gap-8">
-        <Link to="/community" className="text-lg font-normal">
-          Community
-        </Link>
-        <Link to="/hackathons" className="text-lg font-normal">
-          Hackathons
-        </Link>
-        <Link to="/resources" className="text-lg font-normal">
-          Resources
-        </Link>
-        <Link to="/about" className="text-lg font-normal">
-          About
-        </Link>
-      </ul>
-    </div>
+    </header>
   );
 }
